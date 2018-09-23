@@ -33,6 +33,8 @@ namespace ValidateBracketsOrder
         static bool ValidateBrackets(string input)
         {
             int[] array = GenerateIntArray(input);
+            if (array[0] < 0)
+                return false;
             List<int> tracker = new List<int>();
             tracker.Add(array[0]);
             for (int i = 1; i < input.Length; i++)
