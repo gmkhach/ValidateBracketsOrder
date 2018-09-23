@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2019
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidateBracketsOrder", "ValidateBracketsOrder\ValidateBracketsOrder.csproj", "{9B63B881-F178-4AC0-B8E8-9E1141736F58}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B63B881-F178-4AC0-B8E8-9E1141736F58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B63B881-F178-4AC0-B8E8-9E1141736F58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B63B881-F178-4AC0-B8E8-9E1141736F58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B63B881-F178-4AC0-B8E8-9E1141736F58}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {73C04D9B-EE24-4FD9-AEAB-633E5536668C}
+	EndGlobalSection
+EndGlobal
