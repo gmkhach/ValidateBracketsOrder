@@ -69,10 +69,12 @@ namespace ValidateBracketsOrder
 
                 foreach (var ch in input)
                 {
+                    // adds the opening bracket to the Stack
                     if (openValues.Contains(ch))
                     {
                         myStack.Push(ch);
                     }
+                    // compares the closing brackets with with the last opening bracket on Stack and pops it if they match
                     else if (closeValues.Contains(ch) && myStack.Count() != 0)
                     {
                         if (myStack.Peek() + 1 == ch || myStack.Peek() + 2 == ch)
@@ -84,6 +86,7 @@ namespace ValidateBracketsOrder
                             return isValid;
                         }
                     }
+                    //checks for unmatched closing brackets
                     else if (closeValues.Contains(ch) && myStack.Count() == 0)
                     {
                         return false;
@@ -94,6 +97,7 @@ namespace ValidateBracketsOrder
                         throw new Exception("\nInvalid Entry!");
                     }
                 }
+                // Checks for unmatched opening brackets
                 if (myStack.Count() == 0)
                 {
                     isValid = true;
