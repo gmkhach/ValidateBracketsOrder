@@ -17,7 +17,6 @@ namespace ValidateBracketsOrder
     {
         static void Main(string[] args)
         {
-
             do
             {
                 try
@@ -41,8 +40,6 @@ namespace ValidateBracketsOrder
                 Console.ReadLine();
                 Console.Clear();
             } while (true);
-
-
         }
 
         /*
@@ -56,17 +53,16 @@ namespace ValidateBracketsOrder
         { - 123
         } - 125
         */
-
         static bool ValidateBrackets(string input)
         {
             Stack<char> myStack = new Stack<char>();
+            // the inputted character's ASCII value has to be in one of these two sets
             int[] openValues = { 40, 60, 91, 123 };
             int[] closeValues = { 41, 62, 93, 125 };
             bool keepLooping = true;
             bool isValid = false;
             do
             {
-
                 foreach (var ch in input)
                 {
                     // adds the opening bracket to the Stack
