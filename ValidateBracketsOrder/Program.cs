@@ -42,23 +42,11 @@ namespace ValidateBracketsOrder
             } while (true);
         }
 
-        /*
-        ASCII Values
-        ( - 40
-        ) - 41
-        < - 60
-        > - 62
-        [ - 91
-        ] - 93
-        { - 123
-        } - 125
-        */
         static bool ValidateBrackets(string input)
         {
             Stack<char> myStack = new Stack<char>();
-            // the inputted character's ASCII value has to be in one of these two sets
-            int[] openValues = { 40, 60, 91, 123 };
-            int[] closeValues = { 41, 62, 93, 125 };
+            char[] openBrackets = { '(', '<', '[', '{' };
+            char[] closeBrackets = { ')', '>', ']', '}' };
             bool keepLooping = true;
             bool isValid = false;
             do
@@ -66,12 +54,12 @@ namespace ValidateBracketsOrder
                 foreach (var ch in input)
                 {
                     // adds the opening bracket to the Stack
-                    if (openValues.Contains(ch))
+                    if (openBrackets.Contains(ch))
                     {
                         myStack.Push(ch);
                     }
                     // compares the closing brackets with with the last opening bracket on Stack and pops it if they match
-                    else if (closeValues.Contains(ch) && myStack.Count() != 0)
+                    else if (closeBrackets.Contains(ch) && myStack.Count() != 0)
                     {
                         if (myStack.Peek() + 1 == ch || myStack.Peek() + 2 == ch)
                         {
@@ -83,7 +71,7 @@ namespace ValidateBracketsOrder
                         }
                     }
                     //checks for unmatched closing brackets
-                    else if (closeValues.Contains(ch) && myStack.Count() == 0)
+                    else if (closeBrackets.Contains(ch) && myStack.Count() == 0)
                     {
                         return false;
                     }
