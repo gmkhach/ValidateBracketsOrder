@@ -17,21 +17,31 @@ namespace ValidateBracketsOrder
     {
         static void Main(string[] args)
         {
+
             do
             {
-                string input = GetString();
-                if (ValidateBrackets(input))
+                try
                 {
-                    Console.WriteLine("\nThe order is correct.");
+                    string input = GetString();
+                    if (ValidateBrackets(input))
+                    {
+                        Console.WriteLine("\nThe order is correct.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nThe order is incorrect.");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    Console.WriteLine("\nThe order is incorrect.");
+                    Console.WriteLine(ex.Message);
                 }
                 Console.Write("\nPress Enter to try another string...");
                 Console.ReadLine();
                 Console.Clear();
             } while (true);
+
+
         }
 
         /*
@@ -48,51 +58,42 @@ namespace ValidateBracketsOrder
 
         static bool ValidateBrackets(string input)
         {
-            Stack<char> myStack = new Stack<char>(); 
+            Stack<char> myStack = new Stack<char>();
             int[] openValues = { 40, 60, 91, 123 };
             int[] closeValues = { 41, 62, 93, 125 };
             bool keepLooping = true;
-
+            bool isValid = false;
             do
             {
-                try
+
+                foreach (var ch in input)
                 {
-                    foreach (var ch in input)
+                    if (openValues.Contains(ch))
                     {
-                        if (openValues.Contains(ch))
+                        myStack.Push(ch);
+                    }
+                    else if (closeValues.Contains(ch) && myStack.Count() != 0)
+                    {
+                        if (myStack.Peek() + 1 == ch || myStack.Peek() + 2 == ch)
                         {
-                            myStack.Push(ch);
-                        }
-                        else if (closeValues.Contains(ch) && myStack.Count() != 0)
-                        {
-                            if(myStack.Peek() + 1 == ch || myStack.Peek() + 2 == ch)
-                            {
-                                myStack.Pop();
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        }
-                        else if (myStack.Count() == 0)
-                        {
-                            return false;
+                            myStack.Pop();
                         }
                         else
                         {
-                            keepLooping = false;
-                            throw new Exception("Invalid Entry!");
+                            return isValid;
                         }
                     }
-                    keepLooping = false;
+                    else
+                    {
+                        keepLooping = false;
+                        throw new Exception("\nInvalid Entry!");
+                    }
                 }
-                catch(Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }while(keepLooping) ;
+                isValid = true;
+                keepLooping = false;
 
-            return true;
+            } while (keepLooping);
+            return isValid;
         }
 
         static string GetString()
