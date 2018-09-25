@@ -83,15 +83,21 @@ namespace ValidateBracketsOrder
                             return isValid;
                         }
                     }
+                    else if (closeValues.Contains(ch) && myStack.Count() == 0)
+                    {
+                        return false;
+                    }
                     else
                     {
                         keepLooping = false;
                         throw new Exception("\nInvalid Entry!");
                     }
                 }
-                isValid = true;
+                if (myStack.Count() == 0)
+                {
+                    isValid = true;
+                }
                 keepLooping = false;
-
             } while (keepLooping);
             return isValid;
         }
