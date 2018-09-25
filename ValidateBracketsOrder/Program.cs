@@ -22,7 +22,8 @@ namespace ValidateBracketsOrder
             {
                 try
                 {
-                    string input = GetString();
+                    Console.Write("Enter a string of brackets\n\n>>> ");
+                    string input = Console.ReadLine().Trim();
                     if (ValidateBrackets(input))
                     {
                         Console.WriteLine("\nThe order is correct.");
@@ -100,12 +101,6 @@ namespace ValidateBracketsOrder
                 keepLooping = false;
             } while (keepLooping);
             return isValid;
-        }
-
-        static string GetString()
-        {
-            Console.Write("Enter a string of brackets\n\n>>> ");
-            return Console.ReadLine().Trim();
         }
     }
 }
