@@ -21,7 +21,7 @@ namespace ValidateBracketsOrder
             {
                 try
                 {
-                    Console.Write("Enter a string of brackets\n\n>>> ");
+                    Console.Write("Enter an expression containing brackets\n\n>>> ");
                     string input = Console.ReadLine().Trim();
                     if (ValidateBrackets(input))
                     {
@@ -44,22 +44,26 @@ namespace ValidateBracketsOrder
 
         static bool ValidateBrackets(string input)
         {
+            string fliteredInput = "";
+            foreach(var ch in input)
+            {
+                if (ch == '(' || ch == '<' || ch == '{' || ch == '[' || ch == ')' || ch == '>' || ch == '}' || ch == ']')
+                    fliteredInput += ch;
+            }
             Stack<char> myStack = new Stack<char>();
-            char[] openBrackets = { '(', '<', '[', '{' };
-            char[] closeBrackets = { ')', '>', ']', '}' };
             bool keepLooping = true;
             bool isValid = false;
             do
             {
-                foreach (var ch in input)
+                foreach (var ch in fliteredInput)
                 {
                     // adds the opening bracket to the Stack
-                    if (openBrackets.Contains(ch))
+                    if (ch == '(' || ch == '<' || ch == '{' || ch == '[')
                     {
                         myStack.Push(ch);
                     }
                     // compares the closing brackets with with the last opening bracket on Stack and pops it if they match
-                    else if (closeBrackets.Contains(ch) && myStack.Count() != 0)
+                    else if ((ch == ')' || ch == '>' || ch == '}' || ch == ']') && myStack.Count() != 0)
                     {
                         if (myStack.Peek() + 1 == ch || myStack.Peek() + 2 == ch)
                         {
@@ -71,7 +75,7 @@ namespace ValidateBracketsOrder
                         }
                     }
                     //checks for unmatched closing brackets
-                    else if (closeBrackets.Contains(ch) && myStack.Count() == 0)
+                    else if ((ch == ')' || ch == '>' || ch == '}' || ch == ']') && myStack.Count() == 0)
                     {
                         return false;
                     }
