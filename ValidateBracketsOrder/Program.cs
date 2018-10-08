@@ -38,10 +38,13 @@ namespace ValidateBracketsOrder
         static bool ValidateBrackets(string input)
         {
             string fliteredInput = "";
-            foreach(var ch in input)
+            char[] arr = { '(', ')', '<', '>', '[', ']', '{', '}' };
+            foreach (var ch in input)
             {
-                if (ch == '(' || ch == '<' || ch == '{' || ch == '[' || ch == ')' || ch == '>' || ch == '}' || ch == ']')
+                if (arr.Contains(ch))
+                {
                     fliteredInput += ch;
+                }
             }
             Stack<char> myStack = new Stack<char>();
             bool keepLooping = true;
