@@ -24,14 +24,14 @@ namespace ValidateBracketsOrder
                     Console.Write("Enter an expression containing brackets\n\n>>> ");
                     string input = Console.ReadLine().Trim();
                     Console.WriteLine($"\nThe order is {(ValidateBrackets(input) ? "correct" : "incorrect.")}");
-                    Console.Write("\nPress Enter to try another string...");
-                    Console.ReadLine();
-                    Console.Clear();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
+                Console.Write("\nPress Enter to try another string...");
+                Console.ReadLine();
+                Console.Clear();
             } while (true);
         }
 
