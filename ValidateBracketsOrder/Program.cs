@@ -37,6 +37,7 @@ namespace ValidateBracketsOrder
 
         static bool ValidateBrackets(string input)
         {
+            // if there are expressions in-between the parentheses we need to filter those expresisons out before attempting to validate the input string
             string fliteredInput = "";
             char[] arr = { '(', ')', '<', '>', '[', ']', '{', '}' };
             foreach (var ch in input)
