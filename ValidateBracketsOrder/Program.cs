@@ -37,59 +37,35 @@ namespace ValidateBracketsOrder
 
         static bool ValidateBrackets(string input)
         {
-            // if there are expressions in-between the parentheses we need to filter those expresisons out before attempting to validate the input string
-            string fliteredInput = "";
-            char[] arr = { '(', ')', '<', '>', '[', ']', '{', '}' };
+            Stack<char> myStack = new Stack<char>();
             foreach (var ch in input)
             {
-                if (arr.Contains(ch))
+                // adds the opening bracket to the Stack
+                if ("({[<".Contains(ch))
                 {
-                    fliteredInput += ch;
+                    myStack.Push(ch);
                 }
-            }
-            Stack<char> myStack = new Stack<char>();
-            bool keepLooping = true;
-            bool isValid = false;
-            do
-            {
-                foreach (var ch in fliteredInput)
+                // compares the closing brackets with with the last opening bracket on Stack and pops it if they match
+                else if (")}]>".Contains(ch))
                 {
-                    // adds the opening bracket to the Stack
-                    if (ch == '(' || ch == '<' || ch == '{' || ch == '[')
-                    {
-                        myStack.Push(ch);
-                    }
-                    // compares the closing brackets with with the last opening bracket on Stack and pops it if they match
-                    else if ((ch == ')' || ch == '>' || ch == '}' || ch == ']') && myStack.Count() != 0)
-                    {
-                        if (myStack.Peek() + 1 == ch || myStack.Peek() + 2 == ch)
-                        {
-                            myStack.Pop();
-                        }
-                        else
-                        {
-                            return isValid;
-                        }
-                    }
-                    //checks for unmatched closing brackets
-                    else if ((ch == ')' || ch == '>' || ch == '}' || ch == ']') && myStack.Count() == 0)
+                    // checks for unmatched closing brackets
+                    if (myStack.Count() == 0)
                     {
                         return false;
                     }
+                    // tries to match the closing bracket with the last character in myStack.
+                    else if (myStack.Peek() + 1 == ch || myStack.Peek() + 2 == ch)
+                    {
+                        myStack.Pop();
+                    }
                     else
                     {
-                        keepLooping = false;
-                        throw new Exception("\nInvalid Entry!");
+                        return false;
                     }
                 }
-                // Checks for unmatched opening brackets
-                if (myStack.Count() == 0)
-                {
-                    isValid = true;
-                }
-                keepLooping = false;
-            } while (keepLooping);
-            return isValid;
+            }
+            // Checks for unmatched opening brackets
+            return myStack.Count() == 0 ? true : false;
         }
     }
 }
