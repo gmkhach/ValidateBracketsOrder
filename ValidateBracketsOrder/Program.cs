@@ -45,7 +45,7 @@ namespace ValidateBracketsOrder
                 {
                     myStack.Push(ch);
                 }
-                // compares the closing brackets with with the last opening bracket on Stack and pops it if they match
+                // compares the closing brackets with the last opening bracket on Stack and pops it if they match
                 else if (")}]>".Contains(ch))
                 {
                     // checks for unmatched closing brackets
@@ -65,7 +65,7 @@ namespace ValidateBracketsOrder
                 }
             }
             // Checks for unmatched opening brackets
-            return myStack.Count() == 0 ? true : false;
+            return myStack.Count() == 0;
         }
     }
 }
